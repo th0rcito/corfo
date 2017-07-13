@@ -13,6 +13,7 @@ oRouter.get('/', oViewController.getHome);
 //Ruta para registrar un nuevo usuario
 oRouter.post('/api/bodega/add', oApiController.add);
 oRouter.get('/api/bodega/getAll', oApiController.getAll);
+oRouter.put('/api/bodega/update', oApiController.update);
 
 //Exportamos el módulo
 module.exports=oRouter;

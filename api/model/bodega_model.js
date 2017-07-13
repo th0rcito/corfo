@@ -8,7 +8,12 @@ var BodegaModel = {
   },
   getAll : function (fCallback) {
   oConnexion.query('SELECT * FROM tbo_bodega', fCallback);
-  }
+  },
+  update : function (oData, fCallback) {
+  //console.log(oData);
+  oConnexion.query('UPDATE tbo_bodega SET ? WHERE bod_id = ?',oData, fCallback);
+}
+
 };
 
 module.exports = BodegaModel;

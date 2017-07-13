@@ -1,4 +1,4 @@
-var oUsuarioModel = require('../model/usuario_model');
+//var oUsuarioModel = require('../model/usuario_model');
 var oBodegaModel = require('../model/bodega_model');
 
 
@@ -35,6 +35,30 @@ var ApiController = {
     } else {
       oRespuesta.estado = 1;
       oRespuesta.data = oRow
+    }
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(oRespuesta));
+  });
+},
+update : function (req, res, next) {
+
+  var oData = {
+    bod_nombre : req.body.nombre,
+    bod_direccion :  req.body.direccion
+  };
+
+  var iId = req.body.id;
+
+  oBodegaModel.update([oData, iId], function(oError, oRow) {
+    var oRespuesta = {};
+    console.info(oError);
+    if(oError) {
+      oRespuesta.estado = 0;
+      oRespuesta.msg = "Error al actualizar los datos",
+      oRespuesta.descripcion = oError;
+    } else {
+      oRespuesta.estado = 1;
+      oRespuesta.msg = 'Actualizado correctamente'
     }
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(oRespuesta));
